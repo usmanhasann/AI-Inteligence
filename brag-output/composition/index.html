@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upgrade Myself — 30s Launch Reels</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600;700&family=Space+Grotesk:wght@500;700;800&display=swap');
+
+    :root {
+      --bg: #07070d;
+      --bg-surface: #0d0d1a;
+      --card-bg: rgba(255, 255, 255, 0.05);
+      --border: rgba(255, 255, 255, 0.12);
+      --border-strong: rgba(255, 255, 255, 0.25);
+      --text: #ffffff;
+      --muted: #cbd5e1;
+      --brand-violet: #8b5cf6;
+      --brand-violet-light: #a78bfa;
+      --brand-cyan: #22d3ee;
+      --brand-pink: #f472b6;
+      --good-green: #34d399;
+      --font-display: 'Space Grotesk', system-ui, sans-serif;
+      --font-sans: 'Inter', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      width: 1080px;
+      height: 1920px;
+      overflow: hidden;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-sans);
+      position: relative;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Main Composition Container */
+    #main-composition {
+      width: 1080px;
+      height: 1920px;
+      position: relative;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    /* Aurora Glow Background */
+    .aurora {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .aurora-blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.45;
+    }
+
+    .aurora-1 {
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, #6d28d9, transparent 70%);
+      top: -100px;
+      left: -100px;
+    }
+
+    .aurora-2 {
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle, #0891b2, transparent 70%);
+      bottom: -150px;
+      right: -150px;
+    }
+
+    .aurora-3 {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, #be185d, transparent 70%);
+      top: 40%;
+      left: 20%;
+      opacity: 0.25;
+    }
+
+    .grid-pattern {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: radial-gradient(ellipse at 50% 50%, #000 30%, transparent 80%);
+      z-index: 1;
+    }
+
+    /* Container */
+    .viewport {
+      position: relative;
+      z-index: 2;
+      width: 1080px;
+      height: 1920px;
+      padding: 90px 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* Common Components */
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 22px;
+      border-radius: 999px;
+      background: rgba(139, 92, 246, 0.15);
+      border: 1px solid rgba(139, 92, 246, 0.4);
+      color: var(--brand-cyan);
+      font-family: var(--font-mono);
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .gradient-text {
+      background: linear-gradient(110deg, #c4b5fd 0%, #67e8f9 50%, #f9a8d4 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      backdrop-filter: blur(20px);
+      padding: 36px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Scene Rules */
+    .scene {
+      position: absolute;
+      inset: 90px 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* SCENE 1: HOOK (0s - 4s) */
+    #scene-1 {
+      opacity: 1;
+      text-align: center;
+      align-items: center;
+      gap: 36px;
+    }
+
+    .hook-title {
+      font-family: var(--font-display);
+      font-size: 78px;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin-top: 20px;
+    }
+
+    .strike-wrapper {
+      position: relative;
+      display: inline-block;
+      color: #f87171;
+    }
+
+    .strike-line {
+      position: absolute;
+      top: 52%;
+      left: -10px;
+      right: -10px;
+      height: 10px;
+      background: #ef4444;
+      box-shadow: 0 0 20px #ef4444, 0 0 40px #ef4444;
+      border-radius: 5px;
+      transform: scaleX(0);
+      transform-origin: left center;
+    }
+
+    .hook-subtitle {
+      font-family: var(--font-display);
+      font-size: 50px;
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--brand-cyan);
+      max-width: 900px;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    /* SCENE 2: ROADMAP (4s - 10s) */
+    #scene-2 {
+      justify-content: flex-start;
+      padding-top: 40px;
+      gap: 28px;
+    }
+
+    .scene-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .scene-title {
+      font-family: var(--font-display);
+      font-size: 62px;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-top: 14px;
+      color: #ffffff;
+    }
+
+    .pillar-list {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+    }
+
+    .pillar-card {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      padding: 28px 32px;
+      transform: translateX(-60px);
+      opacity: 0;
+    }
+
+    .pillar-num {
+      font-family: var(--font-mono);
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--brand-cyan);
+      background: rgba(34, 211, 238, 0.12);
+      border: 1px solid rgba(34, 211, 238, 0.3);
+      width: 72px;
+      height: 72px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .pillar-info {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .pillar-name {
+      font-family: var(--font-display);
+      font-size: 34px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .pillar-tags {
+      font-size: 22px;
+      color: var(--muted);
+    }
+
+    /* SCENE 3: INTERACTIVE LABS (10s - 18s) */
+    #scene-3 {
+      justify-content: flex-start;
+      padding-top: 40px;
+      gap: 30px;
+    }
+
+    .lab-showcase {
+      position: relative;
+      height: 1150px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .lab-card {
+      background: rgba(13, 13, 26, 0.85);
+      border: 1px solid var(--border-strong);
+      border-radius: 28px;
+      padding: 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.7);
+    }
+
+    .lab-badge {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .lab-tag {
+      font-family: var(--font-mono);
+      font-size: 20px;
+      color: var(--brand-pink);
+      background: rgba(244, 114, 182, 0.15);
+      padding: 6px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(244, 114, 182, 0.3);
+    }
+
+    .lab-title {
+      font-family: var(--font-display);
+      font-size: 38px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    /* 3D Vector Space Graphic */
+    .vector-graph {
+      height: 220px;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .node {
+      position: absolute;
+      padding: 8px 18px;
+      border-radius: 12px;
+      font-family: var(--font-mono);
+      font-size: 20px;
+      font-weight: 600;
+      box-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+    }
+
+    .node-1 { background: #8b5cf6; top: 35px; left: 80px; color: #fff; }
+    .node-2 { background: #06b6d4; bottom: 45px; right: 90px; color: #fff; }
+    .node-3 { background: #ec4899; top: 110px; right: 220px; color: #fff; }
+
+    .vector-line {
+      position: absolute;
+      height: 2px;
+      background: linear-gradient(90deg, #8b5cf6, #06b6d4);
+      width: 480px;
+      top: 100px;
+      left: 190px;
+      transform: rotate(18deg);
+      opacity: 0.8;
+    }
+
+    .sim-counter {
+      font-family: var(--font-mono);
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--good-green);
+    }
+
+    /* Attention Matrix Graphic */
+    .attention-matrix {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      padding: 16px;
+      background: rgba(0, 0, 0, 0.4);
+      border-radius: 20px;
+    }
+
+    .attn-cell {
+      height: 60px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-mono);
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    /* Tokenizer Graphic */
+    .token-box {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 20px;
+      background: rgba(0,0,0,0.4);
+      border-radius: 20px;
+    }
+
+    .token-chip {
+      padding: 10px 18px;
+      border-radius: 12px;
+      font-family: var(--font-mono);
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    /* SCENE 4: DAILY HABIT & OFFLINE PWA (18s - 25s) */
+    #scene-4 {
+      justify-content: flex-start;
+      padding-top: 50px;
+      gap: 32px;
+    }
+
+    .habit-card {
+      background: rgba(13, 13, 26, 0.85);
+      border: 1px solid var(--border-strong);
+      border-radius: 28px;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 24px;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .check-icon {
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      background: rgba(52, 211, 153, 0.15);
+      border: 2px solid var(--good-green);
+      color: var(--good-green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .check-text {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .check-title {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .check-desc {
+      font-size: 22px;
+      color: var(--muted);
+    }
+
+    /* SCENE 5: OUTRO & CTA (25s - 30s) */
+    #scene-5 {
+      text-align: center;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+    }
+
+    .brand-logo-badge {
+      width: 180px;
+      height: 180px;
+      border-radius: 46px;
+      background: linear-gradient(135deg, #7c3aed, #06b6d4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 80px;
+      font-weight: 800;
+      color: #ffffff;
+      box-shadow: 0 0 80px rgba(124, 58, 237, 0.8), 0 0 120px rgba(6, 182, 212, 0.5);
+    }
+
+    .brand-title {
+      font-family: var(--font-display);
+      font-size: 72px;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-sub {
+      font-size: 32px;
+      color: var(--muted);
+      max-width: 800px;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      padding: 28px 56px;
+      border-radius: 24px;
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 700;
+      background: linear-gradient(110deg, #8b5cf6, #22d3ee);
+      color: #ffffff;
+      box-shadow: 0 12px 40px rgba(139, 92, 246, 0.6);
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+<div id="main-composition" data-composition-id="main" data-width="1080" data-height="1920" data-duration="30" data-fps="30">
+
+  <!-- Audio Layer -->
+  <audio id="bg-music" data-start="0" data-duration="30" data-track-index="1" data-volume="0.38" src="assets/music/synthwave.wav"></audio>
+
+  <!-- SFX Layer -->
+  <audio id="sfx-hook-impact" data-start="1.5" data-duration="1.5" data-track-index="2" data-volume="0.75" src="assets/sfx/impact/impactSoft_medium_000.ogg"></audio>
+  <audio id="sfx-hook-glitch" data-start="2.2" data-duration="1.0" data-track-index="3" data-volume="0.65" src="assets/sfx/interface/glitch_002.ogg"></audio>
+
+  <audio id="sfx-card-1" data-start="4.5" data-duration="0.8" data-track-index="4" data-volume="0.60" src="assets/sfx/interface/drop_001.ogg"></audio>
+  <audio id="sfx-card-2" data-start="5.8" data-duration="0.8" data-track-index="5" data-volume="0.60" src="assets/sfx/interface/drop_001.ogg"></audio>
+  <audio id="sfx-card-3" data-start="7.1" data-duration="0.8" data-track-index="6" data-volume="0.60" src="assets/sfx/interface/drop_001.ogg"></audio>
+  <audio id="sfx-card-4" data-start="8.4" data-duration="0.8" data-track-index="7" data-volume="0.60" src="assets/sfx/interface/drop_001.ogg"></audio>
+
+  <audio id="sfx-lab-1" data-start="10.2" data-duration="0.8" data-track-index="8" data-volume="0.65" src="assets/sfx/interface/click_001.ogg"></audio>
+  <audio id="sfx-lab-2" data-start="12.8" data-duration="0.8" data-track-index="9" data-volume="0.65" src="assets/sfx/interface/click_001.ogg"></audio>
+  <audio id="sfx-lab-3" data-start="15.4" data-duration="0.8" data-track-index="10" data-volume="0.65" src="assets/sfx/interface/select_008.ogg"></audio>
+
+  <audio id="sfx-habit-1" data-start="19.2" data-duration="1.0" data-track-index="11" data-volume="0.70" src="assets/sfx/interface/bong_001.ogg"></audio>
+  <audio id="sfx-habit-2" data-start="20.8" data-duration="1.0" data-track-index="12" data-volume="0.70" src="assets/sfx/interface/bong_001.ogg"></audio>
+  <audio id="sfx-habit-3" data-start="22.4" data-duration="1.0" data-track-index="13" data-volume="0.70" src="assets/sfx/interface/bong_001.ogg"></audio>
+
+  <audio id="sfx-outro-bell" data-start="25.2" data-duration="2.5" data-track-index="14" data-volume="0.80" src="assets/sfx/impact/impactBell_heavy_000.ogg"></audio>
+
+  <!-- Background Aurora -->
+  <div class="aurora">
+    <div class="aurora-blob aurora-1"></div>
+    <div class="aurora-blob aurora-2"></div>
+    <div class="aurora-blob aurora-3"></div>
+  </div>
+  <div class="grid-pattern"></div>
+
+  <!-- Main Viewport -->
+  <div class="viewport">
+
+    <!-- SCENE 1: HOOK (0.0s - 4.0s) -->
+    <div id="scene-1" class="scene">
+      <div class="eyebrow">⚡ AI & Vibe-Coding Studio</div>
+      <h1 class="hook-title">
+        STOP MEMORIZING<br>
+        <span class="strike-wrapper">
+          SYNTAX
+          <div id="strike-line" class="strike-line"></div>
+        </span>
+      </h1>
+      <p id="hook-sub" class="hook-subtitle">
+        UPGRADE YOUR MENTAL MODELS & SYSTEM ARCHITECTURE
+      </p>
+    </div>
+
+    <!-- SCENE 2: ROADMAP (4.0s - 10.0s) -->
+    <div id="scene-2" class="scene">
+      <div class="scene-header">
+        <div class="eyebrow">🗺️ 16-Week Curriculum</div>
+        <h2 class="scene-title">Master the 4 Pillars</h2>
+      </div>
+
+      <div class="pillar-list">
+        <div id="pillar-1" class="pillar-card">
+          <div class="pillar-num">01</div>
+          <div class="pillar-info">
+            <div class="pillar-name">Foundations & LLMs</div>
+            <div class="pillar-tags">Tokens · Attention · Sampling · Models</div>
+          </div>
+        </div>
+
+        <div id="pillar-2" class="pillar-card">
+          <div class="pillar-num">02</div>
+          <div class="pillar-info">
+            <div class="pillar-name">Context & Retrieval</div>
+            <div class="pillar-tags">Embeddings · RAG · Vectors · Evals</div>
+          </div>
+        </div>
+
+        <div id="pillar-3" class="pillar-card">
+          <div class="pillar-num">03</div>
+          <div class="pillar-info">
+            <div class="pillar-name">Agents & Vibe-Coding</div>
+            <div class="pillar-tags">MCP · Tool Loops · Workflows · Specs</div>
+          </div>
+        </div>
+
+        <div id="pillar-4" class="pillar-card">
+          <div class="pillar-num">04</div>
+          <div class="pillar-info">
+            <div class="pillar-name">Full-Stack & Design</div>
+            <div class="pillar-tags">HTTP · APIs · Security · UX Laws</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCENE 3: INTERACTIVE LABS (10.0s - 18.0s) -->
+    <div id="scene-3" class="scene">
+      <div class="scene-header">
+        <div class="eyebrow">🔬 Hands-On Learning</div>
+        <h2 class="scene-title">12 Interactive Visual Labs</h2>
+      </div>
+
+      <div class="lab-showcase">
+        <!-- Lab 1: 3D Vector Space (10.2s - 12.8s) -->
+        <div id="lab-1" class="lab-card">
+          <div class="lab-badge">
+            <span class="lab-title">3D Embedding Space</span>
+            <span class="lab-tag">LAB #04</span>
+          </div>
+          <div class="vector-graph">
+            <div class="node node-1">query: "king"</div>
+            <div class="vector-line"></div>
+            <div class="node node-2">target: "queen"</div>
+            <div class="node node-3">"apple"</div>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <span style="font-size:22px; color:var(--muted);">Cosine Similarity</span>
+            <span id="sim-val" class="sim-counter">0.892</span>
+          </div>
+        </div>
+
+        <!-- Lab 2: Transformer Attention (12.8s - 15.4s) -->
+        <div id="lab-2" class="lab-card" style="opacity:0.3;">
+          <div class="lab-badge">
+            <span class="lab-title">Transformer Attention Matrix</span>
+            <span class="lab-tag">LAB #05</span>
+          </div>
+          <div class="attention-matrix">
+            <div class="attn-cell" style="background:rgba(139,92,246,0.9);">0.92</div>
+            <div class="attn-cell" style="background:rgba(139,92,246,0.3);">0.18</div>
+            <div class="attn-cell" style="background:rgba(34,211,238,0.7);">0.74</div>
+            <div class="attn-cell" style="background:rgba(244,114,182,0.85);">0.88</div>
+          </div>
+        </div>
+
+        <!-- Lab 3: Live Tokenizer (15.4s - 18.0s) -->
+        <div id="lab-3" class="lab-card" style="opacity:0.3;">
+          <div class="lab-badge">
+            <span class="lab-title">Interactive Tokenizer</span>
+            <span class="lab-tag">LAB #02</span>
+          </div>
+          <div class="token-box">
+            <span class="token-chip" style="background:rgba(139,92,246,0.3); border:1px solid #8b5cf6;">"Upgrade" [1829]</span>
+            <span class="token-chip" style="background:rgba(34,211,238,0.3); border:1px solid #22d3ee;">"Myself" [9102]</span>
+            <span class="token-chip" style="background:rgba(244,114,182,0.3); border:1px solid #f472b6;">"AI" [402]</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCENE 4: DAILY HABIT & OFFLINE PWA (18.0s - 25.0s) -->
+    <div id="scene-4" class="scene">
+      <div class="scene-header">
+        <div class="eyebrow">🚀 Daily Mastery System</div>
+        <h2 class="scene-title">Built for Continuous Progress</h2>
+      </div>
+
+      <div class="habit-card">
+        <div id="habit-1" class="checklist-item">
+          <div class="check-icon">✓</div>
+          <div class="check-text">
+            <div class="check-title">Daily Study Habit Loop</div>
+            <div class="check-desc">20 mins weekdays · 2 hrs weekends</div>
+          </div>
+        </div>
+
+        <div id="habit-2" class="checklist-item">
+          <div class="check-icon">✓</div>
+          <div class="check-text">
+            <div class="check-title">100% Offline PWA & Android</div>
+            <div class="check-desc">Zero latency · On-device IndexedDB</div>
+          </div>
+        </div>
+
+        <div id="habit-3" class="checklist-item">
+          <div class="check-icon">✓</div>
+          <div class="check-text">
+            <div class="check-title">Import Your Own Materials</div>
+            <div class="check-desc">PDF · Markdown · JSON · TXT packs</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCENE 5: OUTRO & CTA (25.0s - 30.0s) -->
+    <div id="scene-5" class="scene">
+      <div class="brand-logo-badge">⚡</div>
+      <h1 class="brand-title gradient-text">UPGRADE MYSELF</h1>
+      <p class="brand-sub">Master AI Systems, Vibe-Coding & Full-Stack in 16 Weeks</p>
+      <div class="cta-btn">
+        Install PWA or Android · Start Free
+      </div>
+    </div>
+
+  </div>
+</div>
+
+  <!-- Timeline Controller Script -->
+  <script>
+    function updateTimeline(time) {
+      const s1 = document.getElementById('scene-1');
+      const s2 = document.getElementById('scene-2');
+      const s3 = document.getElementById('scene-3');
+      const s4 = document.getElementById('scene-4');
+      const s5 = document.getElementById('scene-5');
+
+      if (time < 3.8) {
+        s1.style.opacity = '1';
+        s2.style.opacity = '0';
+        s3.style.opacity = '0';
+        s4.style.opacity = '0';
+        s5.style.opacity = '0';
+
+        // Laser Strike
+        const strike = document.getElementById('strike-line');
+        if (time >= 1.5) {
+          const progress = Math.min(1, (time - 1.5) / 0.3);
+          strike.style.transform = `scaleX(${progress})`;
+        } else {
+          strike.style.transform = 'scaleX(0)';
+        }
+
+        // Hook Subtitle
+        const sub = document.getElementById('hook-sub');
+        if (time >= 2.2) {
+          const progress = Math.min(1, (time - 2.2) / 0.4);
+          sub.style.opacity = progress;
+          sub.style.transform = `translateY(${(1 - progress) * 20}px)`;
+        } else {
+          sub.style.opacity = '0';
+          sub.style.transform = 'translateY(20px)';
+        }
+      }
+      else if (time >= 3.8 && time < 9.8) {
+        s1.style.opacity = '0';
+        s2.style.opacity = '1';
+        s3.style.opacity = '0';
+        s4.style.opacity = '0';
+        s5.style.opacity = '0';
+
+        const pillars = [
+          { id: 'pillar-1', start: 4.5 },
+          { id: 'pillar-2', start: 5.8 },
+          { id: 'pillar-3', start: 7.1 },
+          { id: 'pillar-4', start: 8.4 }
+        ];
+
+        pillars.forEach(p => {
+          const el = document.getElementById(p.id);
+          if (time >= p.start) {
+            const pr = Math.min(1, (time - p.start) / 0.4);
+            el.style.opacity = pr;
+            el.style.transform = `translateX(${(1 - pr) * -60}px)`;
+          } else {
+            el.style.opacity = '0';
+            el.style.transform = 'translateX(-60px)';
+          }
+        });
+      }
+      else if (time >= 9.8 && time < 17.8) {
+        s1.style.opacity = '0';
+        s2.style.opacity = '0';
+        s3.style.opacity = '1';
+        s4.style.opacity = '0';
+        s5.style.opacity = '0';
+
+        const lab1 = document.getElementById('lab-1');
+        const lab2 = document.getElementById('lab-2');
+        const lab3 = document.getElementById('lab-3');
+
+        if (time >= 10.2 && time < 12.8) {
+          lab1.style.opacity = '1';
+          lab2.style.opacity = '0.3';
+          lab3.style.opacity = '0.3';
+        } else if (time >= 12.8 && time < 15.4) {
+          lab1.style.opacity = '0.3';
+          lab2.style.opacity = '1';
+          lab3.style.opacity = '0.3';
+        } else {
+          lab1.style.opacity = '0.3';
+          lab2.style.opacity = '0.3';
+          lab3.style.opacity = '1';
+        }
+      }
+      else if (time >= 17.8 && time < 24.8) {
+        s1.style.opacity = '0';
+        s2.style.opacity = '0';
+        s3.style.opacity = '0';
+        s4.style.opacity = '1';
+        s5.style.opacity = '0';
+
+        const habits = [
+          { id: 'habit-1', start: 19.2 },
+          { id: 'habit-2', start: 20.8 },
+          { id: 'habit-3', start: 22.4 }
+        ];
+
+        habits.forEach(h => {
+          const el = document.getElementById(h.id);
+          if (time >= h.start) {
+            const pr = Math.min(1, (time - h.start) / 0.4);
+            el.style.opacity = pr;
+            el.style.transform = `translateY(${(1 - pr) * 20}px)`;
+          } else {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+          }
+        });
+      }
+      else {
+        s1.style.opacity = '0';
+        s2.style.opacity = '0';
+        s3.style.opacity = '0';
+        s4.style.opacity = '0';
+        s5.style.opacity = '1';
+      }
+    }
+
+    // Register timeline for Hyperframes deterministic rendering
+    window.hyperframesSeek = function(timeSeconds) {
+      updateTimeline(timeSeconds);
+    };
+
+    window.__timelines = window.__timelines || {};
+    window.__timelines['main'] = {
+      duration: 30,
+      seek: function(t) {
+        updateTimeline(t);
+      }
+    };
+
+    // Initial positioning
+    updateTimeline(0);
+  </script>
+</body>
+</html>
