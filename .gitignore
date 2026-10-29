@@ -1,0 +1,21 @@
+node_modules
+dist
+dev-dist
+*.local
+.DS_Store
+# Android build output (the android/ project itself is committed)
+android/.gradle
+android/build
+android/app/build
+android/app/src/main/assets/public
+android/app/src/main/assets/capacitor.config.json
+android/app/src/main/assets/capacitor.plugins.json
+android/local.properties
+android/capacitor-cordova-android-plugins/build
+
+# Video generation & temporary outputs
+brag-output/
+brag-output-*/
+*.mp4
+*.mov
+*.webm
