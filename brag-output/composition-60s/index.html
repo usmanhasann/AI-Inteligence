@@ -1,0 +1,766 @@
+<!doctype html>
+<html lang="en" data-resolution="landscape">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Upgrade Myself — 60s Flagship Overview</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #07070d;
+        --bg-2: #0d0d1a;
+        --surface: rgba(255, 255, 255, 0.045);
+        --surface-2: rgba(255, 255, 255, 0.08);
+        --surface-solid: #12121f;
+        --border: rgba(255, 255, 255, 0.12);
+        --border-strong: rgba(255, 255, 255, 0.22);
+        --text: #ededf7;
+        --muted: #a2a2bd;
+        --faint: #6e6e8a;
+        --brand: #8b5cf6;
+        --brand-2: #22d3ee;
+        --brand-3: #f472b6;
+        --good: #34d399;
+        --warn: #fbbf24;
+        --bad: #fb7185;
+        --font-display: 'Space Grotesk', system-ui, sans-serif;
+        --font-sans: 'Inter', system-ui, sans-serif;
+        --font-mono: 'JetBrains Mono', monospace;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html, body {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--font-sans);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        background: var(--bg);
+        overflow: hidden;
+      }
+
+      /* Ambient Background */
+      .aurora {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        z-index: 1;
+        overflow: hidden;
+      }
+      .aurora-blob1 {
+        position: absolute;
+        width: 900px;
+        height: 900px;
+        top: -200px;
+        left: -100px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(139, 92, 246, 0.28) 0%, transparent 65%);
+        filter: blur(80px);
+      }
+      .aurora-blob2 {
+        position: absolute;
+        width: 1000px;
+        height: 1000px;
+        bottom: -250px;
+        right: -150px;
+        border-radius: 50%;
+        background: radial-gradient(circle, rgba(34, 211, 238, 0.25) 0%, transparent 65%);
+        filter: blur(90px);
+      }
+      .grid-pattern {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        background-size: 48px 48px;
+        mask-image: radial-gradient(ellipse at 50% 40%, #000 20%, transparent 80%);
+        pointer-events: none;
+      }
+
+      /* Scene Common */
+      .scene {
+        position: absolute;
+        inset: 0;
+        width: 1920px;
+        height: 1080px;
+        z-index: 2;
+        padding: 60px 80px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        opacity: 0;
+      }
+
+      /* Utility UI Elements */
+      .card {
+        background: rgba(18, 18, 31, 0.75);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        backdrop-filter: blur(16px);
+        box-shadow: 0 10px 40px -12px rgba(0, 0, 0, 0.7);
+      }
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 14px;
+        border-radius: 999px;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        background: var(--surface-2);
+        border: 1px solid var(--border);
+        color: var(--muted);
+      }
+      .chip-accent {
+        color: var(--brand-2);
+        border-color: rgba(34, 211, 238, 0.4);
+        background: rgba(34, 211, 238, 0.12);
+      }
+      .eyebrow {
+        font-family: var(--font-display);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--brand-2);
+      }
+      .text-gradient {
+        background: linear-gradient(100deg, #c4b5fd 0%, #67e8f9 55%, #f9a8d4 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+
+      /* Scene 1: Hook */
+      #scene-1 {
+        align-items: center;
+        text-align: center;
+      }
+      .code-wall {
+        position: absolute;
+        inset: 0;
+        font-family: var(--font-mono);
+        font-size: 15px;
+        line-height: 1.6;
+        color: rgba(251, 113, 133, 0.25);
+        overflow: hidden;
+        white-space: pre;
+        padding: 40px;
+        pointer-events: none;
+        z-index: -1;
+      }
+      .laser-line {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 300%;
+        height: 4px;
+        background: linear-gradient(90deg, transparent, #8b5cf6, #22d3ee, transparent);
+        box-shadow: 0 0 25px #22d3ee;
+        transform: rotate(-12deg);
+      }
+
+      /* Scene 2: Roadmap */
+      .pillar-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+        margin-top: 36px;
+      }
+      .pillar-card {
+        padding: 28px;
+        border-radius: 20px;
+        border: 1px solid var(--border);
+        background: rgba(18, 18, 31, 0.85);
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      /* Scene 3: Visual Labs */
+      .lab-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 24px;
+      }
+      .lab-container {
+        position: relative;
+        width: 100%;
+        height: 720px;
+        border-radius: 24px;
+        border: 1px solid var(--border);
+        background: rgba(13, 13, 26, 0.9);
+        overflow: hidden;
+        box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+      }
+
+      /* Scene 4: Daily Learning Engine */
+      .split-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 32px;
+        margin-top: 28px;
+      }
+
+      /* Scene 5: Offline & Mobile */
+      .device-frame {
+        width: 380px;
+        height: 760px;
+        border-radius: 44px;
+        border: 10px solid #2a2a3e;
+        background: #0d0d1a;
+        box-shadow: 0 25px 70px rgba(0,0,0,0.8), 0 0 0 2px rgba(255,255,255,0.1);
+        padding: 20px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Scene 6: Outro Lockup */
+      #scene-6 {
+        align-items: center;
+        text-align: center;
+      }
+      .hero-logo {
+        width: 110px;
+        height: 110px;
+        border-radius: 28px;
+        background: linear-gradient(135deg, #7c3aed, #06b6d4);
+        display: grid;
+        place-items: center;
+        font-family: var(--font-display);
+        font-size: 54px;
+        font-weight: 800;
+        color: #fff;
+        box-shadow: 0 0 50px rgba(139, 92, 246, 0.6);
+        margin-bottom: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="60"
+      data-width="1920"
+      data-height="1080"
+    >
+      <!-- Ambient Background -->
+      <div class="aurora">
+        <div class="aurora-blob1"></div>
+        <div class="aurora-blob2"></div>
+      </div>
+      <div class="grid-pattern"></div>
+
+      <!-- SCENE 1: THE HOOK (0:00 - 0:08) -->
+      <div id="scene-1" class="scene clip" data-start="0" data-duration="8" data-track-index="0">
+        <div class="code-wall" id="code-wall">
+function parseAST(tokens) { return tokens.map(t => ({ type: t.kind, val: t.val })); }
+const memoize = (fn) => { const cache = new Map(); return (...args) => cache.get(args) || cache.set(args, fn(...args)); };
+class TransformerBlock extends Layer { constructor(d) { super(); this.attn = new MultiHeadAttention(d); } }
+async function fetchEmbeddings(text) { return await openai.embeddings.create({ model: "text-embedding-3-small", input: text }); }
+function cosineSimilarity(a, b) { return dot(a, b) / (norm(a) * norm(b)); }
+const vectorDB = new VectorIndex({ dimensions: 1536, metric: "cosine" });
+        </div>
+        <div class="laser-line" id="laser-line"></div>
+        <div style="max-width: 1400px; z-index: 10;">
+          <div class="chip chip-accent mb-6" id="s1-badge" style="font-size: 16px; padding: 8px 20px;">
+            ⚠️ THE SYNTAX PARADOX IN 2026
+          </div>
+          <h1 id="s1-title1" style="font-family: var(--font-display); font-size: 68px; font-weight: 800; line-height: 1.1; margin-bottom: 24px; letter-spacing: -0.02em;">
+            LLMs ALREADY WRITE SYNTAX.<br />
+            <span style="color: #fb7185;">WHY ARE YOU STILL MEMORIZING IT?</span>
+          </h1>
+          <h2 id="s1-title2" style="font-family: var(--font-display); font-size: 58px; font-weight: 700; line-height: 1.15; opacity: 0;" class="text-gradient">
+            UPGRADE YOUR ARCHITECTURAL INTUITION.
+          </h2>
+        </div>
+      </div>
+
+      <!-- SCENE 2: 16-WEEK ROADMAP (0:08 - 0:20) -->
+      <div id="scene-2" class="scene clip" data-start="8" data-duration="12" data-track-index="1">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; width: 100%;">
+          <div>
+            <div class="eyebrow" style="margin-bottom: 8px;">Full 16-Week Curriculum Architecture</div>
+            <h2 style="font-family: var(--font-display); font-size: 48px; font-weight: 800;">4 Pillars. 64 Concepts. Zero Fluff.</h2>
+          </div>
+          <div class="chip" style="font-size: 15px; padding: 10px 20px; background: rgba(139,92,246,0.15); color: #c4b5fd; border-color: rgba(139,92,246,0.4);">
+            🎓 20 Min Weekdays · 2 Hours Weekends
+          </div>
+        </div>
+
+        <div class="pillar-grid" id="pillar-grid">
+          <!-- Pillar 1 -->
+          <div class="pillar-card" style="border-top: 4px solid #8b5cf6;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="eyebrow" style="color: #8b5cf6;">Weeks 1–4</span>
+              <span style="font-size: 24px;">🧠</span>
+            </div>
+            <h3 style="font-family: var(--font-display); font-size: 24px; font-weight: 700;">Foundations</h3>
+            <p style="font-size: 14px; color: var(--muted); line-height: 1.5;">Inside LLMs, Tokenizers, Prompt Engineering, & Math Intuition.</p>
+            <div style="display: flex; flex-direction: column; gap: 8px; margin-top: auto;">
+              <div class="chip" style="font-size: 12px; justify-content: space-between;"><span>Transformer Attention</span> <span style="color:#34d399;">✓</span></div>
+              <div class="chip" style="font-size: 12px; justify-content: space-between;"><span>Byte-Pair Encoding</span> <span style="color:#34d399;">✓</span></div>
+              <div class="chip" style="font-size: 12px; justify-content: space-between;"><span>Embedding Spaces</span> <span style="color:#34d399;">✓</span></div>
+            </div>
+          </div>
+
+          <!-- Pillar 2 -->
+          <div class="pillar-card" style="border-top: 4px solid #22d3ee;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="eyebrow" style="color: #22d3ee;">Weeks 5–8</span>
+              <span style="font-size: 24px;">⚡</span>
+            </div>
+            <h3 style="font-family: var(--font-display); font-size: 24px; font-weight: 700;">Context & RAG</h3>
+            <p style="font-size: 14px; color: var(--muted); line-height: 1.5;">Production RAG, Vector Search, Hybrid Reranking, & Guardrails.</p>
+            <div style="display: flex; flex-direction: column; gap: 8px; margin-top: auto;">
+              <div class="chip" style="font-size: 12px; justify-content: space-between;"><span>Chunking Strategies</span> <span style="color:#34d399;">✓</span></div>
+              <div class="chip" style="font-size: 12px; justify-content: space-between;"><span>Cosine Similarity</span> <span style="color:#34d399;">✓</span></div>
+              <div class="chip" style="font-size: 12px; justify-content: space-between;"><span>Cross-Encoder Rerank</span> <span style="color:#34d399;">✓</span></div>
+            </div>
+          </div>
+
+          <!-- Pillar 3 -->
+          <div class="pillar-card" style="border-top: 4px solid #f472b6;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="eyebrow" style="color: #f472b6;">Weeks 9–12</span>
+              <span style="font-size: 24px;">🤖</span>
+            </div>
+            <h3 style="font-family: var(--font-display); font-size: 24px; font-weight: 700;">Agents & MCP</h3>
+            <p style="font-size: 14px; color: var(--muted); line-height: 1.5;">Autonomous Loops, MCP Servers, Tool Calling, & Vibe Coding.</p>
+            <div style="display: flex; flex-direction: column; gap: 8px; margin-top: auto;">
+              <div class="chip" style="font-size: 12px; justify-content: space-between;"><span>Agent Thought-Act Loop</span> <span style="color:#34d399;">✓</span></div>
+              <div class="chip" style="font-size: 12px; justify-content: space-between;"><span>MCP Protocol</span> <span style="color:#34d399;">✓</span></div>
+              <div class="chip" style="font-size: 12px; justify-content: space-between;"><span>Human-in-the-Loop</span> <span style="color:#34d399;">✓</span></div>
+            </div>
+          </div>
+
+          <!-- Pillar 4 -->
+          <div class="pillar-card" style="border-top: 4px solid #34d399;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span class="eyebrow" style="color: #34d399;">Weeks 13–16</span>
+              <span style="font-size: 24px;">🚀</span>
+            </div>
+            <h3 style="font-family: var(--font-display); font-size: 24px; font-weight: 700;">Full-Stack & Design</h3>
+            <p style="font-size: 14px; color: var(--muted); line-height: 1.5;">React 19, Supabase RLS, Offline PWAs, & UI Design Vocabulary.</p>
+            <div style="display: flex; flex-direction: column; gap: 8px; margin-top: auto;">
+              <div class="chip" style="font-size: 12px; justify-content: space-between;"><span>IndexedDB Offline</span> <span style="color:#34d399;">✓</span></div>
+              <div class="chip" style="font-size: 12px; justify-content: space-between;"><span>Design Vocabulary</span> <span style="color:#34d399;">✓</span></div>
+              <div class="chip" style="font-size: 12px; justify-content: space-between;"><span>Capacitor Mobile</span> <span style="color:#34d399;">✓</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCENE 3: 12 INTERACTIVE LABS SHOWCASE (0:20 - 0:38) -->
+      <div id="scene-3" class="scene clip" data-start="20" data-duration="18" data-track-index="2">
+        <div class="lab-header">
+          <div>
+            <div class="eyebrow">Interactive Concept Mechanics</div>
+            <h2 id="lab-main-title" style="font-family: var(--font-display); font-size: 40px; font-weight: 800;">
+              12 Hands-On Visual Simulation Labs
+            </h2>
+          </div>
+          <div style="display: flex; gap: 12px;">
+            <div class="chip chip-accent" id="lab-tag-1">1. 3D Embedding Space</div>
+            <div class="chip" id="lab-tag-2">2. Attention Matrix</div>
+            <div class="chip" id="lab-tag-3">3. RAG Pipeline</div>
+            <div class="chip" id="lab-tag-4">4. Agent Loop</div>
+          </div>
+        </div>
+
+        <div class="lab-container" id="lab-container">
+          <!-- Sub-Lab A: 3D Vector Embedding Space (20s - 25s) -->
+          <div id="sublab-a" style="position: absolute; inset: 0; padding: 32px; display: flex; gap: 32px;">
+            <div id="three-canvas-host" style="flex: 1; height: 100%; border-radius: 16px; background: radial-gradient(circle at 50% 50%, rgba(139,92,246,0.15), rgba(7,7,13,0.8)); position: relative;">
+              <!-- Three.js renders here -->
+            </div>
+            <div style="width: 440px; display: flex; flex-direction: column; gap: 20px; justify-content: center;">
+              <div class="eyebrow">Vector Geometry in High-Dim Space</div>
+              <h3 style="font-family: var(--font-display); font-size: 32px; font-weight: 700;">
+                Query: <span style="color: #fbbf24;">"dog"</span>
+              </h3>
+              <p style="font-size: 15px; color: var(--muted); line-height: 1.6;">
+                Real high-dimensional embeddings squashed into 3D. Words with similar semantic context cluster together automatically via cosine distance.
+              </p>
+              <div style="display: flex; flex-direction: column; gap: 10px; background: rgba(255,255,255,0.03); padding: 18px; border-radius: 14px; border: 1px solid var(--border);">
+                <div style="display: flex; justify-content: space-between; font-size: 14px; font-weight: 600;">
+                  <span>puppy</span> <span style="color: #22d3ee; font-family: var(--font-mono);">0.94 cosine sim</span>
+                </div>
+                <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden;">
+                  <div style="width: 94%; height: 100%; background: linear-gradient(90deg, #8b5cf6, #22d3ee);"></div>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-size: 14px; font-weight: 600; margin-top: 6px;">
+                  <span>cat</span> <span style="color: #22d3ee; font-family: var(--font-mono);">0.82 cosine sim</span>
+                </div>
+                <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden;">
+                  <div style="width: 82%; height: 100%; background: linear-gradient(90deg, #8b5cf6, #22d3ee);"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sub-Lab B: Transformer Attention (25s - 29s) -->
+          <div id="sublab-b" style="position: absolute; inset: 0; padding: 40px; display: flex; flex-direction: column; gap: 24px; opacity: 0; pointer-events: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <div class="eyebrow" style="color: #8b5cf6;">Multi-Head Attention Weights</div>
+                <h3 style="font-family: var(--font-display); font-size: 28px; font-weight: 700;">
+                  Sentence: <span style="color: #ededf7;">"The animal didn't cross the street because <span style="color: #fbbf24; text-decoration: underline;">it</span> was too tired"</span>
+                </h3>
+              </div>
+              <div class="chip" style="background: rgba(139,92,246,0.2); color: #c4b5fd;">Head 4: Anaphora Resolution</div>
+            </div>
+
+            <!-- SVG Arc Connections -->
+            <div style="position: relative; width: 100%; height: 320px; background: rgba(0,0,0,0.4); border-radius: 16px; border: 1px solid var(--border); padding: 24px; display: flex; align-items: flex-end; justify-content: space-around;">
+              <svg style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;">
+                <!-- Curve from "it" (index 7) to "animal" (index 1) -->
+                <path d="M 1220 250 Q 750 -40 280 250" fill="none" stroke="url(#attnGrad)" stroke-width="6" stroke-linecap="round" />
+                <!-- Curve from "it" to "tired" -->
+                <path d="M 1220 250 Q 1420 80 1620 250" fill="none" stroke="url(#attnGrad)" stroke-width="3" stroke-linecap="round" opacity="0.5" />
+                <defs>
+                  <linearGradient id="attnGrad" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#8b5cf6" />
+                    <stop offset="100%" stop-color="#22d3ee" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              <div class="chip" style="padding: 10px 18px; font-size: 18px;">The</div>
+              <div class="chip" style="padding: 10px 18px; font-size: 18px; background: rgba(139,92,246,0.3); color: #c4b5fd; border-color: #8b5cf6;">animal</div>
+              <div class="chip" style="padding: 10px 18px; font-size: 18px;">didn't</div>
+              <div class="chip" style="padding: 10px 18px; font-size: 18px;">cross</div>
+              <div class="chip" style="padding: 10px 18px; font-size: 18px;">the</div>
+              <div class="chip" style="padding: 10px 18px; font-size: 18px;">street</div>
+              <div class="chip" style="padding: 10px 18px; font-size: 18px;">because</div>
+              <div class="chip" style="padding: 12px 22px; font-size: 20px; background: rgba(251,191,36,0.25); color: #fbbf24; border-color: #fbbf24; font-weight: 800;">it</div>
+              <div class="chip" style="padding: 10px 18px; font-size: 18px;">was</div>
+              <div class="chip" style="padding: 10px 18px; font-size: 18px;">too</div>
+              <div class="chip" style="padding: 10px 18px; font-size: 18px; background: rgba(34,211,238,0.2); color: #67e8f9;">tired</div>
+            </div>
+
+            <div style="background: rgba(18,18,31,0.8); padding: 20px; border-radius: 16px; border: 1px solid var(--border); font-size: 16px; color: var(--muted);">
+              💡 <b style="color: #fff;">Key Insight:</b> Attention head connects <b style="color: #fbbf24;">"it"</b> ➔ <b style="color: #c4b5fd;">"animal"</b> (62% weight) because animals get tired, streets don't.
+            </div>
+          </div>
+
+          <!-- Sub-Lab C: RAG Retrieval Flow (29s - 34s) -->
+          <div id="sublab-c" style="position: absolute; inset: 0; padding: 36px; display: flex; flex-direction: column; gap: 20px; opacity: 0; pointer-events: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div class="eyebrow" style="color: #22d3ee;">Production RAG Pipeline Flow</div>
+              <div class="chip" style="background: rgba(34,211,238,0.15); color: #22d3ee;">Top-K Vector Retrieval + Cross-Encoder Rerank</div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1.2fr; gap: 20px; height: 100%;">
+              <!-- Step 1: Chunking -->
+              <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-radius: 16px; padding: 20px;">
+                <div class="eyebrow" style="margin-bottom: 12px; font-size: 11px;">1. Document Chunking</div>
+                <div style="font-size: 13px; font-family: var(--font-mono); color: var(--muted); background: rgba(255,255,255,0.03); padding: 12px; border-radius: 10px; line-height: 1.5;">
+                  [Chunk 104]<br />
+                  "Annual plans can be refunded within 30 days of purchase..."
+                </div>
+              </div>
+              <!-- Step 2: Vector Search -->
+              <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-radius: 16px; padding: 20px;">
+                <div class="eyebrow" style="margin-bottom: 12px; font-size: 11px; color: #fbbf24;">2. Vector Similarity Search</div>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                  <div style="font-size: 12px; padding: 8px 12px; background: rgba(52,211,153,0.15); border: 1px solid #34d399; border-radius: 8px; color: #34d399; display: flex; justify-content: space-between;">
+                    <span>refund-policy.md</span> <b>0.91</b>
+                  </div>
+                  <div style="font-size: 12px; padding: 8px 12px; background: rgba(255,255,255,0.05); border-radius: 8px; color: var(--muted); display: flex; justify-content: space-between;">
+                    <span>pricing-plans.md</span> <b>0.58</b>
+                  </div>
+                </div>
+              </div>
+              <!-- Step 3: Grounded Answer -->
+              <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border); border-radius: 16px; padding: 20px;">
+                <div class="eyebrow" style="margin-bottom: 12px; font-size: 11px; color: #34d399;">3. Grounded Generation</div>
+                <div style="font-size: 14px; color: var(--text); background: rgba(18,18,31,0.9); padding: 14px; border-radius: 10px; border: 1px solid var(--border); line-height: 1.6;">
+                  🤖 "Yes, annual plans are eligible for a 100% refund within 30 days of purchase <b style="color: #22d3ee;">[refund-policy.md]</b>."
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sub-Lab D: Agent Loop (34s - 38s) -->
+          <div id="sublab-d" style="position: absolute; inset: 0; padding: 36px; display: flex; flex-direction: column; gap: 18px; opacity: 0; pointer-events: none;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <div class="eyebrow" style="color: #f472b6;">Autonomous Agent Execution Loop</div>
+                <h3 style="font-family: var(--font-display); font-size: 24px; font-weight: 700;">Goal: "Find cheapest Lisbon flight & add to calendar"</h3>
+              </div>
+              <div class="chip" style="background: rgba(244,114,182,0.15); color: #f472b6;">Thought ➔ Tool Call ➔ Observation ➔ Response</div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div style="display: flex; gap: 16px; align-items: center; padding: 14px 20px; background: rgba(139,92,246,0.12); border: 1px solid rgba(139,92,246,0.3); border-radius: 14px;">
+                <span style="font-size: 20px;">🧠</span>
+                <div><b style="color: #8b5cf6; font-size: 12px; font-family: var(--font-mono);">THOUGHT</b><div style="font-size: 15px;">I need flight prices to LIS for this weekend. I'll invoke search_flights.</div></div>
+              </div>
+              <div style="display: flex; gap: 16px; align-items: center; padding: 14px 20px; background: rgba(34,211,238,0.12); border: 1px solid rgba(34,211,238,0.3); border-radius: 14px;">
+                <span style="font-size: 20px;">🔨</span>
+                <div><b style="color: #22d3ee; font-size: 12px; font-family: var(--font-mono);">TOOL CALL</b><div style="font-size: 15px; font-family: var(--font-mono); color: #67e8f9;">search_flights({ destination: "LIS", dates: "Fri-Sun" })</div></div>
+              </div>
+              <div style="display: flex; gap: 16px; align-items: center; padding: 14px 20px; background: rgba(251,191,36,0.12); border: 1px solid rgba(251,191,36,0.3); border-radius: 14px;">
+                <span style="font-size: 20px;">👁️</span>
+                <div><b style="color: #fbbf24; font-size: 12px; font-family: var(--font-mono);">OBSERVATION</b><div style="font-size: 15px;">Ryanair $187 · TAP $212 · Delta $240</div></div>
+              </div>
+              <div style="display: flex; gap: 16px; align-items: center; padding: 14px 20px; background: rgba(52,211,153,0.12); border: 1px solid rgba(52,211,153,0.3); border-radius: 14px;">
+                <span style="font-size: 20px;">🏁</span>
+                <div><b style="color: #34d399; font-size: 12px; font-family: var(--font-mono);">RESPONSE</b><div style="font-size: 15px;">Booked Ryanair ($187) and created event on your calendar ✓</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCENE 4: DAILY LEARNING ENGINE (0:38 - 0:50) -->
+      <div id="scene-4" class="scene clip" data-start="38" data-duration="12" data-track-index="3">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end;">
+          <div>
+            <div class="eyebrow">Engineered for Busy Developers</div>
+            <h2 style="font-family: var(--font-display); font-size: 44px; font-weight: 800;">Daily Study Engine & Spaced Repetition</h2>
+          </div>
+          <div class="chip chip-accent" style="font-size: 15px; padding: 8px 18px;">
+            ⚡ 20 Min Weekdays · 2 Hours Weekends
+          </div>
+        </div>
+
+        <div class="split-container">
+          <!-- Left: Schedule Planner -->
+          <div class="card" style="padding: 32px; display: flex; flex-direction: column; gap: 20px;">
+            <div class="eyebrow" style="color: #8b5cf6;">The Habit System</div>
+            <h3 style="font-family: var(--font-display); font-size: 26px; font-weight: 700;">Sustainable Pace Planner</h3>
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+              <div style="display: flex; justify-content: space-between; padding: 14px; background: rgba(255,255,255,0.03); border-radius: 12px; border: 1px solid var(--border);">
+                <span>Mon – Fri (1 concept / day)</span> <b style="color: #22d3ee;">20 mins</b>
+              </div>
+              <div style="display: flex; justify-content: space-between; padding: 14px; background: rgba(139,92,246,0.15); border-radius: 12px; border: 1px solid #8b5cf6;">
+                <span>Sat – Sun (Deep Visual Labs)</span> <b style="color: #c4b5fd;">2 hours</b>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Flashcard flip -->
+          <div class="card" style="padding: 32px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; position: relative; perspective: 1000px;">
+            <div class="eyebrow" style="margin-bottom: 12px; color: #fbbf24;">Spaced Repetition Flashcard</div>
+            <div id="flashcard-inner" style="width: 100%; min-height: 200px; padding: 24px; border-radius: 16px; background: rgba(251,191,36,0.1); border: 1px solid #fbbf24; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+              <h4 style="font-family: var(--font-display); font-size: 24px; font-weight: 700; margin-bottom: 12px;">"What is Cosine Distance?"</h4>
+              <p style="font-size: 15px; color: var(--muted);" id="flashcard-answer">
+                1 - Cosine Similarity. Measures the angle between two embedding vectors regardless of magnitude.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Syllabus Importer Banner -->
+        <div class="card" style="margin-top: 24px; padding: 20px 32px; display: flex; align-items: center; justify-content: space-between; background: linear-gradient(90deg, rgba(139,92,246,0.2), rgba(34,211,238,0.2)); border-color: rgba(34,211,238,0.4);">
+          <div style="display: flex; align-items: center; gap: 16px;">
+            <span style="font-size: 32px;">📥</span>
+            <div>
+              <div style="font-family: var(--font-display); font-size: 18px; font-weight: 700;">Custom Knowledge Importer</div>
+              <div style="font-size: 13px; color: var(--muted);">Drag in any PDF textbook, Markdown doc, or JSON syllabus to auto-expand your curriculum.</div>
+            </div>
+          </div>
+          <div class="chip chip-accent">PDF · Markdown · JSON</div>
+        </div>
+      </div>
+
+      <!-- SCENE 5: 100% OFFLINE & NATIVE MOBILE (0:50 - 0:55) -->
+      <div id="scene-5" class="scene clip" data-start="50" data-duration="5" data-track-index="4">
+        <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+          <div style="max-width: 800px;">
+            <div class="chip chip-accent mb-4" style="font-size: 15px; padding: 8px 18px; background: rgba(52,211,153,0.15); color: #34d399; border-color: #34d399;">
+              ✈️ 100% OFFLINE PERSISTENCE (INDEXEDDB)
+            </div>
+            <h2 style="font-family: var(--font-display); font-size: 52px; font-weight: 800; line-height: 1.1; margin-bottom: 20px;">
+              Study Anywhere.<br />No Cloud Lock-In.
+            </h2>
+            <p style="font-size: 18px; color: var(--muted); line-height: 1.6; margin-bottom: 28px;">
+              Runs as a desktop Progressive Web App and native Android APK via Capacitor. All progress, labs, and flashcards sync locally with zero internet required.
+            </p>
+            <div style="display: flex; gap: 16px;">
+              <div class="chip" style="font-size: 15px; padding: 10px 20px;">📱 Capacitor Android</div>
+              <div class="chip" style="font-size: 15px; padding: 10px 20px;">💻 Desktop PWA</div>
+              <div class="chip" style="font-size: 15px; padding: 10px 20px;">🔒 Zero Telemetry Tracking</div>
+            </div>
+          </div>
+
+          <!-- Device Mockup -->
+          <div class="device-frame">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; font-size: 12px; color: var(--muted);">
+              <span>9:41</span>
+              <span style="color: #34d399; font-weight: 700;">✈️ Airplane Mode ON</span>
+            </div>
+            <div style="font-family: var(--font-display); font-size: 22px; font-weight: 700; margin-bottom: 12px;">Upgrade Myself</div>
+            <div class="card" style="padding: 16px; margin-bottom: 12px; background: rgba(139,92,246,0.2);">
+              <div style="font-size: 11px; color: #c4b5fd;" class="eyebrow">Week 3 · Active</div>
+              <div style="font-size: 16px; font-weight: 700; margin-top: 4px;">Embedding Spaces</div>
+            </div>
+            <div class="card" style="padding: 16px; background: rgba(255,255,255,0.03);">
+              <div style="font-size: 13px; color: var(--muted);">Streak: <b style="color: #fbbf24;">14 Days 🔥</b></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCENE 6: OUTRO LOCKUP & CTA (0:55 - 1:00) -->
+      <div id="scene-6" class="scene clip" data-start="55" data-duration="5" data-track-index="5">
+        <div class="hero-logo">UM</div>
+        <h1 style="font-family: var(--font-display); font-size: 72px; font-weight: 800; margin-bottom: 12px; letter-spacing: -0.03em;">
+          Upgrade Myself
+        </h1>
+        <h2 style="font-family: var(--font-display); font-size: 32px; font-weight: 600; margin-bottom: 32px;" class="text-gradient">
+          "Fluent in AI. Fluent in code."
+        </h2>
+
+        <div style="display: flex; gap: 16px; margin-bottom: 40px;">
+          <div class="chip" style="font-size: 15px; padding: 10px 22px;">16 WEEKS</div>
+          <div class="chip" style="font-size: 15px; padding: 10px 22px;">12 VISUAL LABS</div>
+          <div class="chip" style="font-size: 15px; padding: 10px 22px;">OFFLINE PWA & ANDROID</div>
+        </div>
+
+        <div style="padding: 18px 42px; border-radius: 18px; background: linear-gradient(110deg, #7c3aed, #6366f1 45%, #06b6d4); font-family: var(--font-display); font-size: 22px; font-weight: 700; color: #fff; box-shadow: 0 12px 40px rgba(124, 58, 237, 0.6);">
+          Open the studio · Upgrade your engineering stack
+        </div>
+      </div>
+    </div>
+
+    <!-- GSAP & Three.js Animation Script -->
+    <script>
+      const mainCompositionId = "main";
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // ─── THREE.JS 3D EMBEDDING SPACE INITIALIZATION ───
+      let scene3D, camera3D, renderer3D, pointsGroup;
+      function init3DSpace() {
+        const host = document.getElementById('three-canvas-host');
+        if (!host || host.children.length > 0) return;
+
+        scene3D = new THREE.Scene();
+        camera3D = new THREE.PerspectiveCamera(50, host.clientWidth / host.clientHeight, 0.1, 100);
+        camera3D.position.set(0, 0, 9);
+
+        renderer3D = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+        renderer3D.setSize(host.clientWidth, host.clientHeight);
+        renderer3D.setPixelRatio(2);
+        host.appendChild(renderer3D.domElement);
+
+        pointsGroup = new THREE.Group();
+        scene3D.add(pointsGroup);
+
+        // Clusters
+        const clusters = [
+          { name: 'dog', pos: [0.8, 0.4, 0.5], color: 0xfbbf24 },
+          { name: 'puppy', pos: [1.2, 0.6, 0.8], color: 0xfbbf24 },
+          { name: 'cat', pos: [1.5, 0.1, -0.2], color: 0xfbbf24 },
+          { name: 'server', pos: [-2.0, -1.2, 0.4], color: 0x22d3ee },
+          { name: 'database', pos: [-1.8, -1.6, -0.2], color: 0x22d3ee },
+          { name: 'python', pos: [-1.2, -0.8, 1.0], color: 0x22d3ee },
+          { name: 'Paris', pos: [-0.5, 1.8, -1.2], color: 0xf472b6 },
+          { name: 'Tokyo', pos: [-0.8, 2.2, -0.8], color: 0xf472b6 }
+        ];
+
+        const sphereGeo = new THREE.SphereGeometry(0.12, 16, 16);
+        clusters.forEach(c => {
+          const mat = new THREE.MeshBasicMaterial({ color: c.color });
+          const mesh = new THREE.Mesh(sphereGeo, mat);
+          mesh.position.set(...c.pos);
+          pointsGroup.add(mesh);
+        });
+
+        // Connection lines from "dog" to "puppy" and "cat"
+        const lineMat = new THREE.LineBasicMaterial({ color: 0x22d3ee, transparent: true, opacity: 0.8 });
+        const lineGeo = new THREE.BufferGeometry().setFromPoints([
+          new THREE.Vector3(0.8, 0.4, 0.5),
+          new THREE.Vector3(1.2, 0.6, 0.8)
+        ]);
+        const line = new THREE.Line(lineGeo, lineMat);
+        pointsGroup.add(line);
+      }
+      setTimeout(init3DSpace, 100);
+
+      // ─── SCENE 1 TIMELINE (0s - 8s) ───
+      tl.to("#scene-1", { opacity: 1, duration: 0.3 }, 0);
+      tl.from("#s1-title1", { y: 30, opacity: 0, duration: 0.8, ease: "power3.out" }, 0.2);
+      tl.fromTo("#laser-line", { x: -3000 }, { x: 3000, duration: 1.2, ease: "power2.inOut" }, 3.2);
+      tl.to("#s1-title1", { opacity: 0, scale: 0.9, duration: 0.5, ease: "power2.in" }, 3.8);
+      tl.fromTo("#s1-title2", { scale: 0.95, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.8, ease: "back.out(1.4)" }, 4.3);
+      tl.to("#scene-1", { opacity: 0, duration: 0.4 }, 7.6);
+
+      // ─── SCENE 2 TIMELINE (8s - 20s) ───
+      tl.to("#scene-2", { opacity: 1, duration: 0.4 }, 8.0);
+      tl.from(".pillar-card", { y: 40, opacity: 0, duration: 0.6, stagger: 0.15, ease: "power3.out" }, 8.4);
+      tl.to("#scene-2", { opacity: 0, duration: 0.4 }, 19.6);
+
+      // ─── SCENE 3 TIMELINE (20s - 38s) ───
+      tl.to("#scene-3", { opacity: 1, duration: 0.4 }, 20.0);
+
+      // Sublab A: 3D Vector Space (20s - 25s)
+      tl.to({}, {
+        onUpdate: function() {
+          if (pointsGroup) pointsGroup.rotation.y += 0.015;
+          if (renderer3D && scene3D && camera3D) renderer3D.render(scene3D, camera3D);
+        },
+        duration: 5
+      }, 20.0);
+      tl.to("#sublab-a", { opacity: 0, duration: 0.3 }, 24.7);
+
+      // Sublab B: Attention Matrix (25s - 29s)
+      tl.to("#sublab-b", { opacity: 1, pointerEvents: "auto", duration: 0.3 }, 25.0);
+      tl.to("#lab-tag-1", { className: "chip" }, 25.0);
+      tl.to("#lab-tag-2", { className: "chip chip-accent" }, 25.0);
+      tl.to("#sublab-b", { opacity: 0, duration: 0.3 }, 28.7);
+
+      // Sublab C: RAG Pipeline (29s - 34s)
+      tl.to("#sublab-c", { opacity: 1, pointerEvents: "auto", duration: 0.3 }, 29.0);
+      tl.to("#lab-tag-2", { className: "chip" }, 29.0);
+      tl.to("#lab-tag-3", { className: "chip chip-accent" }, 29.0);
+      tl.to("#sublab-c", { opacity: 0, duration: 0.3 }, 33.7);
+
+      // Sublab D: Agent Loop (34s - 38s)
+      tl.to("#sublab-d", { opacity: 1, pointerEvents: "auto", duration: 0.3 }, 34.0);
+      tl.to("#lab-tag-3", { className: "chip" }, 34.0);
+      tl.to("#lab-tag-4", { className: "chip chip-accent" }, 34.0);
+      tl.to("#scene-3", { opacity: 0, duration: 0.4 }, 37.6);
+
+      // ─── SCENE 4 TIMELINE (38s - 50s) ───
+      tl.to("#scene-4", { opacity: 1, duration: 0.4 }, 38.0);
+      tl.fromTo("#flashcard-inner", { rotateY: 0 }, { rotateY: 180, duration: 0.8, ease: "power2.inOut" }, 42.0);
+      tl.to("#scene-4", { opacity: 0, duration: 0.4 }, 49.6);
+
+      // ─── SCENE 5 TIMELINE (50s - 55s) ───
+      tl.to("#scene-5", { opacity: 1, duration: 0.4 }, 50.0);
+      tl.from(".device-frame", { y: 50, opacity: 0, duration: 0.8, ease: "power3.out" }, 50.3);
+      tl.to("#scene-5", { opacity: 0, duration: 0.4 }, 54.6);
+
+      // ─── SCENE 6 TIMELINE (55s - 60s) ───
+      tl.to("#scene-6", { opacity: 1, duration: 0.4 }, 55.0);
+      tl.from(".hero-logo", { scale: 0.5, opacity: 0, duration: 0.8, ease: "back.out(1.7)" }, 55.3);
+
+      window.__timelines[mainCompositionId] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>
