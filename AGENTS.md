@@ -68,9 +68,9 @@ Do NOT use generic corporate elevator music. Match the audio to the project's fu
 
 ---
 
-### 4. Output Cleanliness Rule
+### 4. Output Deliverables Rule
 All generated video artifacts, frames, and audio exports must reside strictly in:
 ```text
 brag-output/
 ```
-`brag-output/` is listed in `.gitignore` to prevent committing heavy video binaries into the source code repository.
+Ensure `brag-output/brag.mp4`, `brag-output/brag.jpg`, and the composition files are staged and committed (`git add brag-output/`) so that the final video and assets are viewable, previewable, and downloadable directly on GitHub and in PRs.

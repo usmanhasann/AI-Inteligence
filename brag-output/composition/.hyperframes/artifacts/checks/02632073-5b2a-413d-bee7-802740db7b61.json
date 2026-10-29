@@ -1,0 +1,418 @@
+{
+  "ok": true,
+  "strict": false,
+  "browserSkipped": false,
+  "lint": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 5,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"scene-1\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#scene-1",
+        "dataAttributes": {},
+        "sourceFile": "/Users/sam/Downloads/Upgrade MYSELF/brag-output/composition/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"scene-1\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"scene-2\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#scene-2",
+        "dataAttributes": {},
+        "sourceFile": "/Users/sam/Downloads/Upgrade MYSELF/brag-output/composition/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"scene-2\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"scene-3\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#scene-3",
+        "dataAttributes": {},
+        "sourceFile": "/Users/sam/Downloads/Upgrade MYSELF/brag-output/composition/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"scene-3\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"scene-4\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#scene-4",
+        "dataAttributes": {},
+        "sourceFile": "/Users/sam/Downloads/Upgrade MYSELF/brag-output/composition/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"scene-4\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      },
+      {
+        "code": "nested_structure_needs_subcomposition",
+        "severity": "warning",
+        "message": "<div id=\"scene-5\"> is a timeline element that contains nested <div>. The timeline shows one row per top-level element, and the root composition is built only from sub-compositions.",
+        "selector": "#scene-5",
+        "dataAttributes": {},
+        "sourceFile": "/Users/sam/Downloads/Upgrade MYSELF/brag-output/composition/index.html",
+        "bbox": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 0
+        },
+        "time": 0,
+        "fixHint": "Move <div id=\"scene-5\"> and its contents into a sub-composition file and mount it with data-composition-src."
+      }
+    ],
+    "filesScanned": 1
+  },
+  "runtime": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": []
+  },
+  "layout": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "duration": 20,
+    "samples": [
+      1.111,
+      3.333,
+      5.556,
+      7.778,
+      10,
+      12.222,
+      14.444,
+      16.667,
+      18.889
+    ],
+    "transitionSamples": [],
+    "transitionSamplesDropped": 0,
+    "tolerance": 2,
+    "totalIssueCount": 0,
+    "truncated": false
+  },
+  "motion": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": false,
+    "samples": 0
+  },
+  "contrast": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": [],
+    "enabled": true,
+    "samples": [
+      1.111,
+      5.556,
+      10,
+      14.444,
+      18.889
+    ],
+    "checked": 39,
+    "passed": 39
+  },
+  "craft": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 1,
+    "infoCount": 0,
+    "findings": [
+      {
+        "code": "text_below_floor",
+        "severity": "warning",
+        "message": "Type floor is 28 px (2.6% of the 1080 px short side, what a phone can read) and 27 text elements stay under it for 0.5 s or more, the smallest \"16 WEEKS\" at 18 px: set reading text to at least 28 px, or put data-layout-ignore on text that is texture rather than reading; see references/look.md.",
+        "text": "16 WEEKS",
+        "selector": "div.outro-pills > div:nth-of-type(1)",
+        "dataAttributes": {},
+        "sourceFile": "index.html",
+        "bbox": {
+          "x": 625.75,
+          "y": 706.76,
+          "width": 84.47,
+          "height": 22.48
+        },
+        "time": 18,
+        "times": [
+          0,
+          3.75,
+          4.125,
+          4.125,
+          4.375,
+          4.375,
+          4.5,
+          4.5,
+          4.75,
+          4.75,
+          8.25,
+          8.875,
+          9,
+          9.125,
+          9.25,
+          13.75,
+          14,
+          14.25,
+          14.5,
+          14.5,
+          14.625,
+          14.75,
+          14.75,
+          14.875,
+          18,
+          18.125,
+          18.25
+        ],
+        "fontPx": 17.6,
+        "floorPx": 28,
+        "seconds": 2,
+        "elements": [
+          {
+            "selector": "div.outro-pills > div:nth-of-type(1)",
+            "text": "16 WEEKS",
+            "fontPx": 17.6,
+            "time": 18,
+            "seconds": 2
+          },
+          {
+            "selector": "div.outro-pills > div:nth-of-type(2)",
+            "text": "12 INTERACTIVE LABS",
+            "fontPx": 17.6,
+            "time": 18.125,
+            "seconds": 1.875
+          },
+          {
+            "selector": "div.pillar-card.pillar-1 > div:nth-of-type(1)",
+            "text": "PILLAR 01",
+            "fontPx": 17.73,
+            "time": 4.125,
+            "seconds": 3.875
+          },
+          {
+            "selector": "div.pillar-card.pillar-1 > div:nth-of-type(3)",
+            "text": "Inside the LLM, training dynamics, tokenizer mechanics, and prompt engineering.",
+            "fontPx": 17.73,
+            "time": 4.125,
+            "seconds": 3.875
+          },
+          {
+            "selector": "div.rhythm-container > div:nth-of-type(1) > div:nth-of-type(1)",
+            "text": "Daily Learning Cadence",
+            "fontPx": 17.75,
+            "time": 14,
+            "seconds": 3
+          },
+          {
+            "selector": "div.outro-pills > div:nth-of-type(3)",
+            "text": "OFFLINE PWA & ANDROID",
+            "fontPx": 17.84,
+            "time": 18.25,
+            "seconds": 1.75
+          },
+          {
+            "selector": "div.pillar-card.pillar-3 > div:nth-of-type(1)",
+            "text": "PILLAR 03",
+            "fontPx": 17.85,
+            "time": 4.5,
+            "seconds": 3.5
+          },
+          {
+            "selector": "div.pillar-card.pillar-3 > div:nth-of-type(3)",
+            "text": "MCP protocol, autonomous agent loops, toolchains, and shipping AI products.",
+            "fontPx": 17.85,
+            "time": 4.5,
+            "seconds": 3.5
+          },
+          {
+            "selector": "div.rhythm-container > div:nth-of-type(2) > div:nth-of-type(1)",
+            "text": "Zero Cloud Lock-in",
+            "fontPx": 17.85,
+            "time": 14.25,
+            "seconds": 2.75
+          },
+          {
+            "selector": "div.pillar-card.pillar-2 > div:nth-of-type(1)",
+            "text": "PILLAR 02",
+            "fontPx": 17.94,
+            "time": 4.375,
+            "seconds": 3.625
+          },
+          {
+            "selector": "div.pillar-card.pillar-2 > div:nth-of-type(3)",
+            "text": "Context engineering, vector search, production RAG pipelines, and safety evals.",
+            "fontPx": 17.94,
+            "time": 4.375,
+            "seconds": 3.625
+          },
+          {
+            "selector": "div.pillar-card.pillar-4 > div:nth-of-type(1)",
+            "text": "PILLAR 04",
+            "fontPx": 17.95,
+            "time": 4.75,
+            "seconds": 3.25
+          },
+          {
+            "selector": "div.pillar-card.pillar-4 > div:nth-of-type(3)",
+            "text": "Modern frontend, database architecture, DevOps security, and UI/UX polish.",
+            "fontPx": 17.95,
+            "time": 4.75,
+            "seconds": 3.25
+          },
+          {
+            "selector": "#scene-4 > div:nth-of-type(1)",
+            "text": "Built For Real Momentum",
+            "fontPx": 19.97,
+            "time": 13.75,
+            "seconds": 3.25
+          },
+          {
+            "selector": "#scene-2 > div:nth-of-type(1)",
+            "text": "Structured 16-Week Curriculum",
+            "fontPx": 19.98,
+            "time": 3.75,
+            "seconds": 4.25
+          },
+          {
+            "selector": "div.hook-badge",
+            "text": "AI Learning Reimagined",
+            "fontPx": 20,
+            "time": 0,
+            "seconds": 3.5
+          },
+          {
+            "selector": "span.labs-counter-text",
+            "text": "Interactive Visual Labs",
+            "fontPx": 20,
+            "time": 8.25,
+            "seconds": 5.25
+          },
+          {
+            "selector": "div.rhythm-container > div:nth-of-type(1) > div:nth-of-type(3)",
+            "text": "20 min weekdays: 1 sharp concept",
+            "fontPx": 21.97,
+            "time": 14.5,
+            "seconds": 2.5
+          },
+          {
+            "selector": "div.rhythm-container > div:nth-of-type(1) > div:nth-of-type(4)",
+            "text": "2 hours weekends: deep project labs",
+            "fontPx": 21.97,
+            "time": 14.5,
+            "seconds": 2.5
+          },
+          {
+            "selector": "div.rhythm-container > div:nth-of-type(1) > div:nth-of-type(5)",
+            "text": "Flashcards, glossary & custom notes",
+            "fontPx": 21.97,
+            "time": 14.625,
+            "seconds": 2.375
+          },
+          {
+            "selector": "div.rhythm-container > div:nth-of-type(2) > div:nth-of-type(3)",
+            "text": "Progressive Web App (PWA)",
+            "fontPx": 21.97,
+            "time": 14.75,
+            "seconds": 2.25
+          },
+          {
+            "selector": "div.rhythm-container > div:nth-of-type(2) > div:nth-of-type(4)",
+            "text": "Native Android build (Capacitor)",
+            "fontPx": 21.97,
+            "time": 14.75,
+            "seconds": 2.25
+          },
+          {
+            "selector": "div.rhythm-container > div:nth-of-type(2) > div:nth-of-type(5)",
+            "text": "Local IndexedDB persistence",
+            "fontPx": 21.97,
+            "time": 14.875,
+            "seconds": 2.125
+          },
+          {
+            "selector": "div.lab-card.lab-4 > div:nth-of-type(1)",
+            "text": "Tool Calling Engine",
+            "fontPx": 23.31,
+            "time": 9.25,
+            "seconds": 4.25
+          },
+          {
+            "selector": "div.lab-card.lab-3 > div:nth-of-type(1)",
+            "text": "Chunking & Search",
+            "fontPx": 23.41,
+            "time": 9.125,
+            "seconds": 4.375
+          },
+          {
+            "selector": "div.lab-card.lab-2 > div:nth-of-type(1)",
+            "text": "Transformer Weights",
+            "fontPx": 23.65,
+            "time": 9,
+            "seconds": 4.5
+          },
+          {
+            "selector": "div.lab-card.lab-1 > div:nth-of-type(1)",
+            "text": "Embedding Space",
+            "fontPx": 23.71,
+            "time": 8.875,
+            "seconds": 4.625
+          }
+        ]
+      }
+    ],
+    "enabled": true,
+    "step": 0.125,
+    "samples": 160
+  },
+  "audio": {
+    "ok": true,
+    "errorCount": 0,
+    "warningCount": 0,
+    "infoCount": 0,
+    "findings": []
+  },
+  "hdr": {
+    "autoPromotion": null,
+    "inspection": "available"
+  },
+  "snapshots": {
+    "enabled": false,
+    "files": [],
+    "times": [],
+    "findingFiles": []
+  }
+}
