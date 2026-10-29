@@ -12,10 +12,3 @@ android/app/src/main/assets/capacitor.config.json
 android/app/src/main/assets/capacitor.plugins.json
 android/local.properties
 android/capacitor-cordova-android-plugins/build
-
-# Video generation & temporary outputs
-brag-output/
-brag-output-*/
-*.mp4
-*.mov
-*.webm
